@@ -3,7 +3,7 @@ import { View, Text, Button,TouchableOpacity,StyleSheet,Image } from 'react-nati
 import { NavigationContainer } from '@react-navigation/native';
 import { Avatar,ListItem,Icon } from 'react-native-elements';
 import {createDrawerNavigator,DrawerContentScrollView,DrawerItemList, DrawerItem,} from '@react-navigation/drawer';
-import Header from './header';
+import Pesquisa from './pesquisa';
 
 
 
@@ -13,6 +13,7 @@ function principal({ navigation }) {
       <Text style={{color: 'red', fontSize: 20, fontWeight: 'bold', margin: 20}}>Conteúdo da Tela</Text>
       
       <Button title="Acionar Drawer" onPress={() => navigation.toggleDrawer()} />
+      <Button title="Ir para Parâmetros da Pesquisa" onPress={() => navigation.navigate('pesquisa')} />
     </View>
   );
 }
@@ -144,6 +145,20 @@ function MyDrawer() {
            />
          ),
          headerTitleStyle: { flex: 1, textAlign: 'center'},headerStyle:{height: 100,backgroundColor:'red'},headerTintColor: '#fff', 
+         
+         }}
+      />
+      <Drawer.Screen name="pesquisa"
+         component={Pesquisa}
+         options={{ 
+          headerTitle: (props) => (
+           <Image
+             style={{ width: 200, height: 60 }}
+             source={require('./assets/logo.png')}
+             resizeMode='contain'
+           />
+         ),
+        headerStyle:{height: 100,backgroundColor:'red'},headerTintColor: '#fff', 
          
          }}
       />
