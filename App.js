@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { View, Text, Button,TouchableOpacity,StyleSheet,Image } from 'react-native';
+import { View, Text, TouchableOpacity,StyleSheet,Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { Avatar,ListItem,Icon } from 'react-native-elements';
+import { Avatar,ListItem,Icon,Button } from 'react-native-elements';
 import {createDrawerNavigator,DrawerContentScrollView,DrawerItemList, DrawerItem,} from '@react-navigation/drawer';
 import Pesquisa from './pesquisa';
 
@@ -10,10 +10,12 @@ import Pesquisa from './pesquisa';
 function principal({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{color: 'red', fontSize: 20, fontWeight: 'bold', margin: 20}}>Conteúdo da Tela</Text>
+      <Text style={{color: '#25965a', fontSize: 20, fontWeight: 'bold', margin: 20}}>Conteúdo da Tela Principal</Text>
       
-      <Button title="Acionar Drawer" onPress={() => navigation.toggleDrawer()} />
-      <Button title="Ir para Parâmetros da Pesquisa" onPress={() => navigation.navigate('pesquisa')} />
+      <Button  buttonStyle={{backgroundColor: '#25965a', width:200,marginTop: 20}}  title="Abrir Drawer" onPress={() => navigation.toggleDrawer()}/>
+      
+     
+      <Button buttonStyle={{backgroundColor: '#25965a', width:200,marginTop: 20}} title="Pesquisa" onPress={() => navigation.navigate('pesquisa')} />
     </View>
   );
 }
@@ -32,7 +34,7 @@ function CustomDrawerContent(props) {
         source={{uri:'https://images.unsplash.com/photo-1500080209535-717dd4ebaa6b?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=acddea1fd5f8d1eafd1fc300f280176c' }}
       />
       <ListItem.Content>
-      <Text style={styles.AvatarNome}>Paula Soares</Text>
+      <Text style={styles.AvatarNome}>Paula Lima</Text>
         <Text style={styles.AvatarDados}>paulas@gmail.com</Text>
         <Text style={styles.AvatarDados}>ID: A9002</Text>
       </ListItem.Content>
@@ -132,21 +134,14 @@ const Drawer = createDrawerNavigator();
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator screenOptions={{headerStyle: { backgroundColor: 'red' } }}drawerContent={(props) => <CustomDrawerContent {...props} />}>
+    <Drawer.Navigator screenOptions={{headerStyle: { backgroundColor: '#25965a' } }}drawerContent={(props) => <CustomDrawerContent {...props} />}>
        
         <Drawer.Screen name="principal"
          component={principal}
          options={{ 
-          headerTitle: (props) => (
-           <Image
-             style={{ width: 200, height: 60 }}
-             source={require('./assets/logo.png')}
-             resizeMode='contain'
-           />
-         ),
-         headerTitleStyle: { flex: 1, textAlign: 'center'},headerStyle:{height: 100,backgroundColor:'red'},headerTintColor: '#fff', 
+          title: "Tela Principal",
          
-         }}
+         headerTitleStyle: { flex: 0, textAlign: 'center'},headerTintColor: '#fff'}}
       />
       <Drawer.Screen name="pesquisa"
          component={Pesquisa}
